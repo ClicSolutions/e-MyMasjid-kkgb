@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard e‑MyMasjid</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="logo-container">
+    <img src="assets/logo-masjid.png" alt="Logo Masjid" class="logo" />
+  </div>
+  <h1>Dashboard e‑MyMasjid</h1>
+  <nav>
+    <a href="modules/derma.html">💰 Derma Global</a>
+    <a href="modules/qariah.html">👥 Ahli Qariah</a>
+    <a href="modules/kubur.html">⚰️ e‑Kubur</a>
+  </nav>
+  <button onclick="logout()">Log Keluar</button>
+  <script type="module">
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { firebaseConfig } from "./js/firebase-config.js";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, user => {
+      if (!user) window.location.href = "index.html";
+    });
+
+    window.logout = () => signOut(auth);
+  </script>
+</body>
+</html>
