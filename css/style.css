@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+.logo-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.logo {
+  width: 120px;
+  height: auto;
+}
+h1, h2 {
+  margin-bottom: 15px;
+}
+nav a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #007bff;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+input, select, button {
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+button {
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+}
+#loginStatus, #status {
+  margin-top: 10px;
+  color: green;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+.lot-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+#map {
+  width: 100%;
+  height: 300px;
+  margin: 15px 0;
+}

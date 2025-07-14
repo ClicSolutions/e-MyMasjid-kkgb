@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>e‑Kubur – Lot Kubur</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <h2>Peta & Lot Kubur</h2>
+  <div id="map"></div>
+  <div class="lot-card">
+    <h4>No Lot: 1876</h4>
+    <p>Nama: Shahirah Nadiah Baharuddin</p>
+    <p>Tarikh Meninggal: 9-7-25</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=1876&size=100x100" alt="QR Lot 1876">
+  </div>
+  <div class="lot-card">
+    <h4>No Lot: 1877</h4>
+    <p>Nama: Jalaludin Abdul Khalid</p>
+    <p>Tarikh Meninggal: 12-7-25</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=1877&size=100x100" alt="QR Lot 1877">
+  </div>
+  <script>
+    function initMap() {
+      const lokasiKubur = { lat: 3.220447, lng: 101.740128 };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 18,
+        center: lokasiKubur,
+      });
+      new google.maps.Marker({ position: lokasiKubur, map });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+</body>
+</html>
