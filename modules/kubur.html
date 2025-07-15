@@ -1,85 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
 <head>
   <meta charset="UTF-8">
-  <title>e‑Kubur – Masjid Kg Klang Gate Baru</title>
+  <title>e-Kubur – Masjid Kg Klang Gate Baru</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
-    #map { width: 100%; height: 300px; margin: 15px 0; }
-    .lot-card { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
-    .qr-img { margin-top: 10px; }
+    #map {
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+      border: 2px solid #ccc;
+    }
+    .lot-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+      background: #1e1e1e;
+    }
+    .qr-img {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
   <h2>Peta & Lot Kubur</h2>
-  <div id="lotsContainer"></div>
-  <div id="detailLot"></div>
+  
+  <div id="lotsContainer">
+    <!-- LOT 1876 -->
+    <div class="lot-card">
+      <h4>Lot 1876</h4>
+      <p>Nama: Shahirah Nadiah Baharuddin</p>
+      <p>Tarikh Meninggal: 9/7/25</p>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?data=1876&size=120x120" alt="QR Lot 1876">
+      <button onclick="showMap(3.229822, 101.737361)">Info & Peta</button>
+    </div>
+
+    <!-- LOT 1877 -->
+    <div class="lot-card">
+      <h4>Lot 1877</h4>
+      <p>Nama: Jalaludin Abdul Khalid</p>
+      <p>Tarikh Meninggal: 12/7/25</p>
+      <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?data=1877&size=120x120" alt="QR Lot 1877">
+      <button onclick="showMap(3.229890, 101.737420)">Info & Peta</button>
+    </div>
+  </div>
+
+  <!-- Google Map -->
   <div id="map"></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    const lots = [
-      { lot: "1876", nama: "Shahirah Nadiah Baharuddin", tarikh: "9/7/25" },
-      { lot: "1877", nama: "Jalaludin Abdul Khalid", tarikh: "12/7/25" }
-    ];
-    const baseLat = 3.220667, baseLng = 101.739583;
+    let map;
 
-    const container = document.getElementById("lotsContainer");
-    const detail = document.getElementById("detailLot");
-
-    lots.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "lot-card";
-      div.innerHTML = `
-        <strong>Lot ${item.lot}</strong><br>
-        ${item.nama} – ${item.tarikh}
-        <div id="qr-${item.lot}" class="qr-img"></div>
-        <button onclick="showLot('${item.lot}')">Info & Peta</button>
-      `;
-      container.appendChild(div);
-
-      new QRCode(div.querySelector(`#qr-${item.lot}`), {
-        text: `${location.origin}${location.pathname}?lot=${item.lot}`,
-        width: 100, height: 100
+    function initMap() {
+      const lokasiDefault = { lat: 3.2298, lng: 101.7373 };
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: lokasiDefault,
+        zoom: 18,
       });
-    });
-
-    window.showLot = lotNum => {
-      const item = lots.find(l => l.lot === lotNum);
-      detail.innerHTML = `
-        <h3>Lot ${item.lot}</h3>
-        <p><strong>Nama:</strong> ${item.nama}<br>
-           <strong>Tarikh:</strong> ${item.tarikh}</p>
-      `;
-      initMap(
-        baseLat + (item.lot % 2) * 0.00005,
-        baseLng + (item.lot % 2) * 0.00005
-      );
-    };
-
-    function initMap(lat, lng) {
-      document.getElementById("map").innerHTML = "";
-      const map = L.map('map').setView([lat, lng], 18);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19
-      }).addTo(map);
-      L.marker([lat, lng]).addTo(map);
     }
 
-    // Load Leaflet dynamically
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css";
-    document.head.appendChild(link);
-    const script = document.createElement("script");
-    script.src = "https://unpkg.com/leaflet@1.9.3/dist/leaflet.js";
-    document.head.appendChild(script);
-
-    // If URL has ?lot= parameter, auto show that lot
-    const params = new URLSearchParams(location.search);
-    if (params.get("lot")) {
-      showLot(params.get("lot"));
+    function showMap(lat, lng) {
+      if (!map) {
+        initMap();
+      }
+      const lokasi = { lat, lng };
+      map.setCenter(lokasi);
+      new google.maps.Marker({
+        position: lokasi,
+        map: map,
+      });
     }
   </script>
+
+  <!-- MASUKKAN API KEY ANDA DI SINI -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfwYylYCRf0E9tIbFfmoB95-Vjj08md-8&callback=initMap" async defer></script>
 </body>
 </html>
