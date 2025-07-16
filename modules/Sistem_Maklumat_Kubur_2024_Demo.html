@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sistem Maklumat Kubur - Demo</title>
+  <style>
+    body { font-family: sans-serif; background: #f3f3f3; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+    input { padding: 5px; width: 300px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <h2>Sistem Maklumat Kubur (Demo)</h2>
+  <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari Nama atau Lot...">
+
+  <table id="kuburTable">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>No K/P</th>
+        <th>Tarikh Meninggal</th>
+        <th>No Lot</th>
+        <th>No Siri</th>
+        <th>Status</th>
+        <th>Kawasan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Shahirah Nadiah Baharuddin</td>
+        <td>-</td>
+        <td>2025-07-09</td>
+        <td><a href="https://www.google.com/maps?q=3.220300,101.739950" target="_blank">1876</a></td>
+        <td>-</td>
+        <td>-</td>
+        <td>Kg Klang Gate Baru</td>
+      </tr>
+      <tr>
+        <td>Jalaludin Abdul Khalid</td>
+        <td>-</td>
+        <td>2025-07-12</td>
+        <td><a href="https://www.google.com/maps?q=3.220330,101.739980" target="_blank">1877</a></td>
+        <td>-</td>
+        <td>-</td>
+        <td>Kg Klang Gate Baru</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function searchTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#kuburTable tbody tr");
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+      });
+    }
+  </script>
+
+</body>
+</html>
