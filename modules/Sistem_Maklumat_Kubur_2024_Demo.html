@@ -1,20 +1,51 @@
-
 <!DOCTYPE html>
 <html lang="ms">
 <head>
   <meta charset="UTF-8" />
   <title>Sistem Maklumat Kubur - Demo</title>
   <style>
-    body { font-family: sans-serif; background: #f3f3f3; padding: 20px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
-    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
-    input { padding: 5px; width: 300px; margin-bottom: 10px; }
+    body {
+      font-family: sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    a {
+      color: blue;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-
   <h2>Sistem Maklumat Kubur (Demo)</h2>
-  <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari Nama atau Lot...">
+
+  <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari Nama atau Lot..." />
 
   <table id="kuburTable">
     <thead>
@@ -33,7 +64,7 @@
         <td>Shahirah Nadiah Baharuddin</td>
         <td>-</td>
         <td>2025-07-09</td>
-        <td><a href="https://www.google.com/maps?q=3.220300,101.739950" target="_blank">1876</a></td>
+        <td><a href="https://e-mymasjid-kkgb.netlify.app/modules/kubur.html#lot1876" target="_blank">1876</a></td>
         <td>-</td>
         <td>-</td>
         <td>Kg Klang Gate Baru</td>
@@ -42,7 +73,7 @@
         <td>Jalaludin Abdul Khalid</td>
         <td>-</td>
         <td>2025-07-12</td>
-        <td><a href="https://www.google.com/maps?q=3.220330,101.739980" target="_blank">1877</a></td>
+        <td><a href="https://e-mymasjid-kkgb.netlify.app/modules/kubur.html#lot1877" target="_blank">1877</a></td>
         <td>-</td>
         <td>-</td>
         <td>Kg Klang Gate Baru</td>
@@ -54,12 +85,12 @@
     function searchTable() {
       const input = document.getElementById("searchInput").value.toLowerCase();
       const rows = document.querySelectorAll("#kuburTable tbody tr");
+
       rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
+        const text = row.innerText.toLowerCase();
         row.style.display = text.includes(input) ? "" : "none";
       });
     }
   </script>
-
 </body>
 </html>
